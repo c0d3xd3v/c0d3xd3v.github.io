@@ -34,7 +34,7 @@
 
 
 
-  <script src="MobileConsole.js"></script>
+  
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
@@ -199,6 +199,8 @@
     </script>
 </head>
 <body onload="start();">
+   
+   This is a proof of concept for using gpgpu computations for mesh processing. The viewer needs some time to load, up to 2-4 min are ok. This is because the big mesh data must be loaded from server side and then into gpu memory. After this the computation of normal vectors for the mesh is used as example to illustrate the speed gains by using gpu as computing device. The API for this is raw opengl with it's shading laguage GLSL. 
    
    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
