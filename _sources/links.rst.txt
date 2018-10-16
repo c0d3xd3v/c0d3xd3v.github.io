@@ -1,0 +1,6 @@
+Links
+========================= 
+
+* `Laplacian mesh editing`_ 
+
+.. _Laplacian mesh editing : http://www.ctralie.com/Teaching/LapMesh/
