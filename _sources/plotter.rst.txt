@@ -1,5 +1,0 @@
-Plotter
-============================
-
-.. raw:: html
-   :file: content/plotter.html 
