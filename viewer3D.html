@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>emscripten OpenGL &mdash; IncredibleDeepSky  documentation</title>
+  <title>emscripten OpenGL GPGPU example &mdash; IncredibleDeepSky  documentation</title>
   
 
   
@@ -89,7 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="rechner.html">Rechner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotter.html">Plotter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fdm.html">Finite Differenzen Methode</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">emscripten OpenGL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">emscripten OpenGL GPGPU example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
 </ul>
 
@@ -136,7 +136,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>emscripten OpenGL</li>
+      <li>emscripten OpenGL GPGPU example</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,14 +155,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="emscripten-opengl">
-<h1>emscripten OpenGL<a class="headerlink" href="#emscripten-opengl" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="emscripten-opengl-gpgpu-example">
+<h1>emscripten OpenGL GPGPU example<a class="headerlink" href="#emscripten-opengl-gpgpu-example" title="Permalink to this headline">¶</a></h1>
 <!doctype html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Emscripten-Generated Code</title>
+    <script src="_static/MobileConsole.js"></script>
     <script>
     
         (function(w){
@@ -200,10 +201,19 @@
 </head>
 <body onload="start();">
    
-   This is a proof of concept for using gpgpu computations for mesh processing. The viewer needs some time to load, up to 2-4 min are ok. This is because the big mesh data must be loaded from server side and then into gpu memory. After this the computation of normal vectors for the mesh is used as example to illustrate the speed gains by using gpu as computing device. The API for this is raw opengl with it's shading laguage GLSL. 
+   <div>
+   This is a proof of concept, c++ programm converted with emscripten to the web, for using gpgpu computations for mesh processing. The viewer needs some time to load, up to 2-4 min are ok. This is because the big mesh data must be loaded from server side and then into gpu memory. After this the computation of normal vectors for the mesh is used as example to illustrate the speed      gains by using gpu as computing device. The API for this is raw opengl with it's shading laguage GLSL. In avarage this is 100 times faster than computing on cpu.
+   <ul>
+   <li> use mouse wheel for zoom </li>
+   <li> left click and hold for rotating the mesh </li>
+   <li> right click for dragging the mesh </li>
+   </ul>
+   </div>
    
+   <center>
    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
-
+   </center>
+   
     <script type='text/javascript'>
       var ext;
 
@@ -241,6 +251,7 @@
   
   </body>
 </html>
+
 </div>
 
 

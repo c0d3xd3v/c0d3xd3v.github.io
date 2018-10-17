@@ -1,4 +1,4 @@
-emscripten OpenGL
+emscripten OpenGL GPGPU example
 ============================
 
 .. raw:: html
