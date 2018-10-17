@@ -1,3 +1,4 @@
+ 
 /*!
  * hnl.mobileConsole - javascript mobile console - v1.3.4 - 6/9/2018
  * Adds html console to webpage. Especially useful for debugging JS on mobile devices.
