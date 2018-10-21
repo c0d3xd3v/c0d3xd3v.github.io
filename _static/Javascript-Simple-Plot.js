@@ -701,6 +701,12 @@ Plotter.prototype.addLine = function(line) {
 Plotter.prototype.clearMathFunctions = function() {
 	this.functions = new Array();
 }
+Plotter.prototype.clearLines = function() {
+	this.lines = new Array();
+}
+Plotter.prototype.clearPoints = function() {
+	this.pointSets = new Array();
+}
 Plotter.prototype.focus = function() {
     var xmin = -1;
     var xmax =  1;

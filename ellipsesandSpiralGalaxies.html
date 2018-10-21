@@ -184,6 +184,7 @@ MathJax.Hub.Config({
         <input type="checkbox" onchange="toggleTimer();">animate</input>
         <input type="checkbox" onchange="updateEllipses();" id="points" checked="true">points</input>
         <input type="checkbox" onchange="updateEllipses();" id="orbits" checked="true">orbits</input>
+        <input type="checkbox" onchange="updateEllipses();" id="radi" checked="true">radi</input>
 
         <div style="display:block;">$ \phi $ <input type="range"  id="phi"
 	    min="0.0" max="180.0" step="0.05"
@@ -314,6 +315,23 @@ MathJax.Hub.Config({
             // add function
             for(var i = 0; i < F.length; i++)
                 plotter.addMathFunction(F[i]);
+                
+            if(document.getElementById('radi').checked == true)
+            { 
+                for(var i = 1; i < F.length; i++)
+                {
+                    console.log(F[i-1].points.length);
+                    for(var j = 0; j < F[i-1].points.length; j++)
+                    {
+                        var line = new Line();
+                        line.color = 'red';
+                        line.setP1(F[i-1].points[j].x, F[i-1].points[j].y);
+                        line.setP2(F[i].points[j].x, F[i].points[j].y);
+                        plotter.addLine(line);
+                    } 
+                }
+            }
+            
             // focus all functions 
             plotter.focus();
         }
@@ -321,6 +339,8 @@ MathJax.Hub.Config({
         function updateEllipses(){
         
             plotter.clearMathFunctions();
+            plotter.clearLines();
+            plotter.clearPoints();
             
             var F = computeFunctions(
             1.0, 0.2, 

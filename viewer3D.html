@@ -39,7 +39,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" >
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -88,6 +88,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rechner.html">Rechner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotter.html">Plotter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ellipsesandSpiralGalaxies.html">Ellipses and spiral Galaxies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fdm.html">Finite Differenzen Methode</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">emscripten OpenGL GPGPU example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
@@ -163,7 +164,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Emscripten-Generated Code</title>
- 
+    <script src="_static/MobileConsole.js"></script>
     <script>
     
         (function(w){
@@ -186,22 +187,6 @@
                     }
                 };
             }
-            
-            if(arguments[0] == "touchstart") 
-            {
-                var touchstartHandler = arguments[1];
-                arguments[1] = function touchStart(e) 
-                {
-                    if (e.target.id == "canvas") 
-                    {
-                        // Clicked on canvas
-                        console.log("inside");
-                        document.getElementById('body').setAttribute("style","touch-action: none;");
-                    }else
-                    document.getElementById('body').setAttribute("style","touch-action: scroll;");
-                    touchstartHandler(e);
-                };
-            }
             console.log(arguments);
             return originalAdd.apply(this, arguments);
         };
@@ -215,7 +200,7 @@
     
     </script>
 </head>
-<body id="body" onload="start();" >
+<body onload="start();">
    
    <div>
    This is a proof of concept, c++ programm converted with emscripten to the web, for using gpgpu computations for mesh processing. The viewer needs some time to load, up to 2-4 min are ok. This is because the big mesh data must be loaded from server side and then into gpu memory. After this the computation of normal vectors for the mesh is used as example to illustrate the speed      gains by using gpu as computing device. The API for this is raw opengl with it's shading laguage GLSL. In avarage this is 100 times faster than computing on cpu.
