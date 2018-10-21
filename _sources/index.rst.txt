@@ -14,6 +14,7 @@ This page is under construction and should illustrate my fields of interest, Vis
 
    rechner.rst
    plotter.rst
+   ellipsesandSpiralGalaxies.rst
    fdm.rst
    viewer3D.rst
    links.rst

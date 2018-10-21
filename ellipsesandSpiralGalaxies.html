@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ellipses and spiral Galaxies &mdash; IncredibleDeepSky  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Finite Differenzen Methode" href="fdm.html" />
+    <link rel="prev" title="Plotter" href="plotter.html" />
+<meta name="sourcename" content="ellipsesandSpiralGalaxies.rst.txt" />
+
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IncredibleDeepSky
+          
+
+          
+            
+            <img src="_static/ich2.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          <html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body></body>
+</html>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rechner.html">Rechner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotter.html">Plotter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ellipses and spiral Galaxies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdm.html">Finite Differenzen Methode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer3D.html">emscripten OpenGL GPGPU example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IncredibleDeepSky</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Ellipses and spiral Galaxies</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ellipsesandSpiralGalaxies.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ellipses-and-spiral-galaxies">
+<h1>Ellipses and spiral Galaxies<a class="headerlink" href="#ellipses-and-spiral-galaxies" title="Permalink to this headline">¶</a></h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Kai" />
+  <meta name="date" content="2016.11.20" /> 
+  <meta name="category" content="programming" /> 
+  <script type="text/javascript" src="_static/Javascript-Simple-Plot.js"></script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<title>a plotter in pure javascript/HTML5</title>
+
+</head>
+<body>
+<center>
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            <canvas id="canvas" style="position:relative;border:solid; border-color:#FFFFFF;"></canvas>
+	    </div>
+
+        <input type="checkbox" onchange="toggleTimer();">animate</input>
+        <input type="checkbox" onchange="updateEllipses();" id="points" checked="true">points</input>
+        <input type="checkbox" onchange="updateEllipses();" id="orbits" checked="true">orbits</input>
+
+        <div style="display:block;">$ \phi $ <input type="range"  id="phi"
+	    min="0.0" max="180.0" step="0.05"
+	    value="0.0"
+	    oninput="updateEllipses()" onchange="updateEllipses()"
+	    style="width:350px;">
+        </div>
+
+	    <div style="display:block;">$ n $  
+            <input type="range"  id="n"
+	            min="1" max="50" step="1"
+	            value="7"
+                oninput="updateEllipses()" onchange="updateEllipses()"
+                style="width:350px;">
+	    </div>
+        
+        <div style="display:block;">$ k $  
+                <input type="range"  id="k"
+                    min="10" max="50" step="1"
+                    value="25"
+                    oninput="updateEllipses()" onchange="updateEllipses()"
+                    style="width:350px;">
+        </div>
+
+	    </center>
+    </center>
+        <script type="text/javascript">
+        // gloabal vars
+		var plotter = null;
+		
+		var sin = Math.sin
+		var cos = Math.cos
+		var exp = Math.exp
+		var sqrt = Math.sqrt
+		function norm(x, y){return sqrt(x*x + y*y);}
+        function rad(alpha){return alpha/180.0*Math.PI;}
+		
+        function init() 
+        {
+            // set up plotter
+            plotter = new Plotter(document.getElementById('canvas'));
+            plotter.resize(300, 300);  
+        }
+        
+        function ParametricFunction(f, g)
+        {
+            var func = new MathParametricFunction(
+                function(x) {return f(x);},
+                function(x) {return g(x);}
+            );
+            
+            func.start = -1.0;
+            func.end =  1.0;
+            func.count = 3;
+            func.connected = true;
+            func.showImpulse = false;
+            func.pointSize = 3.5;
+            func.lineWidth = 1;
+            func.showPoints = false;
+            func.color = 'red';
+            func.pointsFill = false;
+            func.init();
+            
+            return func;
+        }
+        
+        function computeFunction(a, b, phi)
+        {
+            // create test function
+            var f = new MathParametricFunction(
+                function(x) 
+                    {return (cos(phi)*a*cos(x)-sin(phi)*b*sin(x));},
+                function(x) 
+                    {return (sin(phi)*a*cos(x)+cos(phi)*b*sin(x));}
+            );
+            f.start = 0.0;
+            f.end = 2*Math.PI;
+            f.count = document.getElementById('k').value;
+            f.connected = document.getElementById('orbits').checked;
+            f.showImpulse = false;
+            f.pointSize = 1;
+            f.lineWidth = 0.5;
+            f.showPoints = document.getElementById('points').checked;
+            var R = 0;
+            var B = 255;
+            f.color = 'rgba('+R+', 0,'+B+',1.0)';
+            f.lineColor = f.color;
+            f.pointsFill = true;
+            f.init();
+            
+            return f;
+        }
+        
+        function computeFunctions(aStart, aEnd, bStart, bEnd, n, phi_)
+        {
+            var F = new Array();
+
+            var da = (aEnd - aStart)/n;
+            var db = (bEnd - bStart)/n;
+            var a = aStart;
+            var b = bStart;
+            
+            var alpha = 10.0;
+            var dphi = phi_/n;
+            var phi = 0.0;
+            
+            F.push(computeFunction(a, b, phi));
+            
+            for(var i = 1; i < n; i++)
+            {
+                a += da;
+                b += db;
+                phi += dphi*1.0/norm(a,b);
+                                
+                F.push(
+                computeFunction(
+                    a, 
+                    b, 
+                    phi
+                ));
+            }
+            
+            return F;
+        }
+        
+        function plotFunctions(F)
+        {
+            // add function
+            for(var i = 0; i < F.length; i++)
+                plotter.addMathFunction(F[i]);
+            // focus all functions 
+            plotter.focus();
+        }
+                
+        function updateEllipses(){
+        
+            plotter.clearMathFunctions();
+            
+            var F = computeFunctions(
+            1.0, 0.2, 
+            0.7, 0.1, 
+            document.getElementById('n').value, 
+            rad(document.getElementById('phi').value));
+
+            plotter.addMathFunction(ParametricFunction(
+                function (x) {return -1;},
+                function (x) {return x;}
+            ));
+            
+            plotter.addMathFunction(ParametricFunction(
+                function (x) {return 1;},
+                function (x) {return x;}
+            ));
+            
+            plotter.addMathFunction(ParametricFunction(
+                function (x) {return x;},
+                function (x) {return -1;}
+            ));
+
+            plotter.addMathFunction(ParametricFunction(
+                function (x) {return x;},
+                function (x) {return 1;}
+            ));
+
+            plotFunctions(F);
+        }
+        
+        var timerRunnning = false;
+        var T;
+        var p = document.getElementById('phi');
+        function toggleTimer()
+        {
+            if(timerRunnning == false)
+            {
+                timerRunnning = true;
+                p.disabled = true;
+                var phi = parseFloat(p.min);
+                T = setInterval(
+                    function ()
+                    {
+                        phi += parseFloat(p.step);
+                        p.value = phi;
+
+                        if(phi > parseFloat(p.max))
+                        {
+                            phi = parseFloat(p.min);
+                            p.value = p.min;
+                        }
+                        updateEllipses();
+                    },
+                    1
+                );
+            }else{
+                timerRunnning = false;
+                clearInterval(T);
+                p.disabled= false;
+            }         
+        }
+
+        init();
+        updateEllipses();
+        
+    </script>
+	
+
+</body>
+</html>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fdm.html" class="btn btn-neutral float-right" title="Finite Differenzen Methode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plotter.html" class="btn btn-neutral" title="Plotter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kai Henning.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

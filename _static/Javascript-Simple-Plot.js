@@ -809,7 +809,7 @@ function MathFunction(f) {
     this.step = 0;
     this.count = 100;
     this.pointSize = 3;
-    this. f = f;
+    this.f = f;
     this.df = null;
     this.mAv = null;
 }
@@ -897,6 +897,87 @@ MathFunction.prototype.getRange = function(start, end) {
 MathFunction.prototype.clearPoints = function () {
 	this.points = new Array();
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+function MathParametricFunction(f, g)
+{
+	this.name = '';
+	this.points = new Array();
+	this.color = 'white';
+	this.alpha = 0.2;
+    this.lineColor = 'red';
+    this.rectangleSignal = false;
+    this.connected = false;
+    this.showImpulse = false;
+    this.showPoints = true;
+    this.lineWidth = 1.0;
+    this.fill = false;
+    this.pointsFill = false;
+    this.start = 0;
+    this.end = 100;
+    this.step = 0;
+    this.count = 100;
+    this.pointSize = 3;
+    this.f = f;
+    this.g = g; 
+    this.df = null;
+}
+MathParametricFunction.prototype.setFilledConnected = function(color, filledPoints) {
+	this.lineColor = color;
+	if(filledPoints) {
+		this.color = color;
+	} else {
+		this.color = 'white';
+	}
+	this.fill = true;
+	this.connected = true;
+	this.rectangleSignal = false;
+}
+MathParametricFunction.prototype.addPoint = function (_x, _y) {
+	this.points.push({x : _x, y : _y});
+}
+MathParametricFunction.prototype.init = function () {
+	var x = this.start;
+	var dx = (this.end - x) / this.count;
+	this.step = dx;
+	for(;x < this.end;x+=dx) {
+        var p = {
+            x : this.f(x),
+            y : this.g(x)
+        };
+        this.addPoint(p.x, p.y);
+    }
+    var p = {
+        x : this.f(this.end),
+        y : this.g(this.end)
+    };
+    this.addPoint(p.x, p.y);
+}
+MathParametricFunction.prototype.copyMathFunction = function() {
+	var c = new MathFunction();
+	for(var i = 0; i < this.points.length; i++) {
+		c.addPoint(this.points[i].x, this.points[i].y);
+	}
+	return c;
+}
+MathParametricFunction.prototype.differentiate = function() {
+    this.df = new MathFunction(null);
+    this.df.showPoints = false;
+    this.df.lineColor = 'blue';
+    for(var i = 1; i < this.points.length-1; i++) {
+        var x1 = this.points[i-1].x;
+        var y1 = this.points[i-1].y;
+        var x2 = this.points[i+1].x;
+        var y2 = this.points[i+1].y;
+        var m = (y2 - y1) / (x2 - x1);
+        this.df.addPoint(x1, m);
+    }
+}
+MathParametricFunction.prototype.clearPoints = function () {
+	this.points = new Array();
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 function PointSet() {
 	this.name = '';
